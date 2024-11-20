@@ -66,15 +66,22 @@ function autenticar(){
         senha: $('#senha').val(),
     }
 
-    validarUsuario(objLoginSenha)
-}
+    validarUsuario(objLoginSenha).then(function (isValid) {
+        if (isValid) {
+            window.location.href = 'mensagens.html';
+        } else {
+            alert('email e senha inválidos.');
+        }
+    }).catch(function () {
+        alert('Ocorreu um erro ao tentar autenticar. Tente novamente mais tarde');
+    });
+
+    }
 
 function validarUsuario(objLoginSenha) {
+    return new Promise((resolve, reject) => {
 
- 
-    var retorno = false;
-
-    var validacao = $.ajax({
+        $.ajax({
         url: 'https://app-p2-aab7c7fdddb8.herokuapp.com/usuarios/validar',
         method: 'POST',
         dataType: 'json',
@@ -84,16 +91,22 @@ function validarUsuario(objLoginSenha) {
                 },
         contentType: 'application/json',
         data: JSON.stringify(objLoginSenha)
-    }).fail(function(){
-        return retorno;
+
+    })
+    
+    .done(function (data) {
+        resolve(data);
+    })
+
+    .fail(function () {
+        resolve(false);
     });
 
-    validacao.done(function(data) {
-        retorno = data;
-    });
+});
 
-    return retorno;
 }
+
+
 
 $('#contato-form').on('submit', function (event) {
     event.preventDefault();
