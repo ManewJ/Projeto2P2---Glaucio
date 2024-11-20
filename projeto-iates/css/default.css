@@ -370,5 +370,55 @@ footer p {
     text-indent: 15px;
 }
 
+/* Tabela */
+
+/* estilo para a tabela */
+
+.tabela {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse:collapse;
+    background-color: var(--background);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+/* estilo para as células */
+.tabela th, .tabela td {
+    border: 1px solid var(--darkblue);
+    padding: 12px;
+    text-align: left;
+    font-size: 0.9em;
+    color: var(--darkblue);
+
+}
+
+/* cabeçalho da tabela */
+
+.tabela th {
+    background-color: var(--lightblue);
+    color: white; /*cor do texto no cabeçalho*/
+    text-transform: uppercase; /*letras maiusculas*/
+    font: bold; /*texto em negrito*/
+}
+
+/* linhas alternadas */
+
+.tabela tr:nth-child(even) {
+    background-color: #f9f9f9; /*fundo cinza claro para linhas pares*/
+
+}
+
+.tabela tr:nth-child(odd) {
+    background-color: white; /* Fundo branco para linhas ímpares */
+}
+
+/* Efeito ao passar o mouse */
+
+.tabela tr:hover {
+    background-color: var(--lightblue); /* Destaque da linha */
+    color: white; /* Texto branco */
+    transition: background-color 0.3s ease; /* Transição suave */
+}
 
 
